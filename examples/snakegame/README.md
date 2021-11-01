@@ -5,6 +5,10 @@ Kleverson Nascimento Pinto  11075716
 
 ----
 
+### Link para o jogo
+
+https://kleversonnascimento.github.io/abcg/snakegame/
+
 ### Sobre o jogo
 
 Clone do jogo clássico de snake, onde o objetivo é fazer que a cobra coma o maior número de maçãs sem colidir com o próprio corpo.
