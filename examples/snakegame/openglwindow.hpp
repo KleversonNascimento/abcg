@@ -51,7 +51,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
     std::default_random_engine m_randomEngine;
     abcg::ElapsedTimer m_elapsedTimer;
 
-    float gameSpeed = 0.02f;
+    float gameSpeed = 0.08f;
 
     int snakeSize{1};
     int boardSize = 24;
