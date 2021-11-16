@@ -103,6 +103,60 @@ void OpenGLWindow::initializeGL() {
   resizeGL(getWindowSettings().width, getWindowSettings().height);
 }
 
+void OpenGLWindow::loadModelFromFile(std::string_view path) {
+  tinyobj::ObjReader reader;
+
+  if (!reader.ParseFromFile(path.data())) {
+    if (!reader.Error().empty()) {
+      throw abcg::Exception{abcg::Exception::Runtime(
+          fmt::format("Failed to load model {} ({})", path, reader.Error()))};
+    }
+    throw abcg::Exception{
+        abcg::Exception::Runtime(fmt::format("Failed to load model {}", path))};
+  }
+
+  if (!reader.Warning().empty()) {
+    fmt::print("Warning: {}\n", reader.Warning());
+  }
+
+  const auto& attrib{reader.GetAttrib()};
+  const auto& shapes{reader.GetShapes()};
+
+  m_vertices.clear();
+  m_indices.clear();
+
+  // A key:value map with key=Vertex and value=index
+  std::unordered_map<Vertex, GLuint> hash{};
+
+  // Loop over shapes
+  for (const auto& shape : shapes) {
+    // Loop over indices
+    for (const auto offset : iter::range(shape.mesh.indices.size())) {
+      // Access to vertex
+      const tinyobj::index_t index{shape.mesh.indices.at(offset)};
+
+      // Vertex position
+      const int startIndex{3 * index.vertex_index};
+      const float vx{attrib.vertices.at(startIndex + 0)};
+      const float vy{attrib.vertices.at(startIndex + 1)};
+      const float vz{attrib.vertices.at(startIndex + 2)};
+
+      Vertex vertex{};
+      vertex.position = {vx, vy, vz};
+
+      // If hash doesn't contain this vertex
+      if (hash.count(vertex) == 0) {
+        // Add this index (size of m_vertices)
+        hash[vertex] = m_vertices.size();
+        // Add this vertex
+        m_vertices.push_back(vertex);
+      }
+
+      m_indices.push_back(hash[vertex]);
+    }
+  }
+}
+
 void OpenGLWindow::paintGL() {
   update();
 
@@ -178,6 +232,15 @@ void OpenGLWindow::paintGL() {
   m_ground.paintGL();
 
   abcg::glUseProgram(0);
+}
+
+void OpenGLWindow::paintUI() { abcg::OpenGLWindow::paintUI(); }
+
+void OpenGLWindow::resizeGL(int width, int height) {
+  m_viewportWidth = width;
+  m_viewportHeight = height;
+
+  m_camera.computeProjectionMatrix(width, height);
 }
 
 void OpenGLWindow::terminateGL() {
