@@ -7,4 +7,5 @@
 #add_subdirectory(snakegame)
 #add_subdirectory(loadmodel)
 #add_subdirectory(lookat)
-add_subdirectory(viewer1)
+#add_subdirectory(viewer1)
+add_subdirectory(starfield)
