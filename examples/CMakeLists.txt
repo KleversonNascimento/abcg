@@ -11,4 +11,5 @@
 #add_subdirectory(starfield)
 #add_subdirectory(viewer2)
 #add_subdirectory(viewer3)
-add_subdirectory(viewer4)
+#add_subdirectory(viewer4)
+add_subdirectory(earth)
