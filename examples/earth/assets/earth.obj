@@ -1,6 +1,6 @@
 # Blender v2.79 (sub 0) OBJ File: 'Globe.blend'
 # www.blender.org
-mtllib Globe.mtl
+mtllib earth.mtl
 o Atmosphere_Sphere.001
 v -7.740793 -6.122651 1.655091
 v -9.474115 -0.425983 -3.215534
