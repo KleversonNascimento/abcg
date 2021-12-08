@@ -18,7 +18,13 @@ Modelo da Terra inspirado nos projetos da disciplina:
 
 Os arquivos .obj, .mtl e .jpg da Terra foram baixados no site [Free3D](https://free3d.com/3d-model/ultra-realistic-sci-fi-earth-high-res-textures-low-end-textures-made-with-blender-279b-959150.html)
 
+O som tocado ao fundo é The Universe, Emilio Marone. Retirado do site [melody loops](https://www.melodyloops.com/tracks/the-universe/)
 
 ### Controles
 
-Setas direcionais (cima, direita, baixo e esquerda) que movem a câmera
+Setas direcionais (cima, direita, baixo e esquerda) e teclas `f`, `v`, `g` e `h` movem a câmera
+
+### Mudanças em relação a entrega do Projeto 2
+
+- Adição de som ao fundo
+- Adição dos movimentos de câmera `tilt` e `truck`
