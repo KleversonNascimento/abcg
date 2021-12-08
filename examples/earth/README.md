@@ -27,4 +27,4 @@ Setas direcionais (cima, direita, baixo e esquerda) e teclas `f`, `v`, `g` e `h`
 ### Mudanças em relação a entrega do Projeto 2
 
 - Adição de som ao fundo
-- Adição dos movimentos de câmera `tilt` e `truck`
+- Adição dos [movimentos de câmera](https://blog.storyblocks.com/video-tutorials/7-basic-camera-movements/) `tilt` e `truck`
