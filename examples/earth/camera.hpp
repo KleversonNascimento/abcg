@@ -12,6 +12,7 @@ class Camera {
   void computeProjectionMatrix(int width, int height);
 
   void dolly(float speed);
+  void lift(float speed);
   void pan(float speed);
 
  private:

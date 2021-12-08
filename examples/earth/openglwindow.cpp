@@ -16,10 +16,16 @@ void OpenGLWindow::handleEvent(SDL_Event& ev) {
       m_dollySpeed = -0.3f;
     }
     if (ev.key.keysym.sym == SDLK_LEFT || ev.key.keysym.sym == SDLK_a) {
-      m_panSpeed = -0.5f;
+      m_panSpeed = -0.3f;
     }
     if (ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_d) {
-      m_panSpeed = 0.5f;
+      m_panSpeed = 0.3f;
+    }
+    if (ev.key.keysym.sym == SDLK_f) {
+      m_liftSpeed = -0.3f;
+    }
+    if (ev.key.keysym.sym == SDLK_v) {
+      m_liftSpeed = 0.3f;
     }
   }
   if (ev.type == SDL_KEYUP) {
@@ -34,6 +40,12 @@ void OpenGLWindow::handleEvent(SDL_Event& ev) {
     }
     if ((ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_d) && m_panSpeed > 0) {
       m_panSpeed = 0.0f;
+    }
+    if (ev.key.keysym.sym == SDLK_f) {
+      m_liftSpeed = 0.0f;
+    }
+    if (ev.key.keysym.sym == SDLK_v) {
+      m_liftSpeed = 0.0f;
     }
   }
 }
@@ -137,5 +149,6 @@ void OpenGLWindow::update() {
   float deltaTime{static_cast<float>(getDeltaTime())};
 
   m_camera.dolly(m_dollySpeed * deltaTime);
+  m_camera.lift(m_liftSpeed * deltaTime);
   m_camera.pan(m_panSpeed * deltaTime);
 }

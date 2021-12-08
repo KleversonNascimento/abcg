@@ -31,6 +31,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   long long int numberFramers{1};
 
   float m_dollySpeed{0.0f};
+  float m_liftSpeed{0.0f};
   float m_panSpeed{0.0f};
   float m_shininess{};
   float rotationSpeed{0.05f};
