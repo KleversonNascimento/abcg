@@ -21,15 +21,6 @@ void Camera::dolly(float speed) {
   computeViewMatrix();
 }
 
-void Camera::lift(float speed) {
-  glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-
-  m_at -= up * speed;
-  m_eye -= up * speed;
-
-  computeViewMatrix();
-}
-
 void Camera::pan(float speed) {
   glm::mat4 transform{glm::mat4(1.0f)};
 
@@ -38,6 +29,25 @@ void Camera::pan(float speed) {
   transform = glm::translate(transform, -m_eye);
 
   m_at = transform * glm::vec4(m_at, 1.0f);
+
+  computeViewMatrix();
+}
+
+void Camera::tilt(float speed) {
+  glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+  m_at -= up * speed;
+  m_eye -= up * speed;
+
+  computeViewMatrix();
+}
+
+void Camera::truck(float speed) {
+  glm::vec3 forward = glm::normalize(m_at - m_eye);
+  glm::vec3 left = glm::cross(m_up, forward);
+
+  m_at -= left * speed;
+  m_eye -= left * speed;
 
   computeViewMatrix();
 }
